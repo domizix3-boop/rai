@@ -1,0 +1,209 @@
+/* RaiClinic: CSS da página (só o que o kit não tem) */
+
+::selection { background: color-mix(in oklab, var(--accent) 22%, transparent); color: var(--ink); }
+html { caret-color: var(--accent); }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+
+/* logo da cliente no menu e no rodapé (PNG recortado do print; trocar pelo arquivo original quando chegar) */
+.nav__logo.nav__logo--img img { display: block; height: 40px; width: auto; }
+@media (max-width: 639px) { .nav__logo.nav__logo--img img { height: 32px; } }
+.nav__logo.footer__logo img { height: 52px; }
+
+/* painel do "Sobre mim": cabe na tela junto com o título */
+.frame-slot { position: relative; overflow: hidden; border-radius: var(--r-lg); height: min(520px, calc(100svh - var(--nav) - var(--padt) - var(--padb) - 150px)); min-height: 340px; }
+@media (max-width: 1023px) { .frame-slot { height: auto; min-height: 0; aspect-ratio: 4 / 3; } .about { margin-top: var(--s-7); } }
+
+/* sobre mim */
+.about > * + * { margin-top: var(--s-5); }
+.about p { max-width: 52ch; font-size: var(--t-body); line-height: 1.7; }
+.about__crp { color: var(--muted); font-size: var(--t-small); }
+
+/* abordagem: título discreto acima da frase, pilares embaixo */
+.statement__h { font: 500 var(--t-body)/1.4 var(--font-text); letter-spacing: 0; color: var(--muted); }
+.statement .mo-wh__text { margin-top: var(--s-6); }
+.pillars { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--s-5); margin: var(--s-9) 0 0; }
+.pillars dt { font-weight: 500; font-size: var(--t-body); color: var(--ink); }
+.pillars dd { margin: var(--s-2) 0 0; color: var(--ink); font-size: var(--t-body); line-height: 1.6; max-width: 32ch; }
+@media (max-width: 1023px) { .pillars { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: var(--s-6); } }
+@media (max-width: 639px) { .pillars { grid-template-columns: 1fr; margin-top: var(--s-7); } }
+
+/* depoimento */
+.quote-card { display: grid; gap: var(--s-8); }
+.quote--big { position: relative; margin: 0; }
+.quote__mark { width: 56px; height: 42px; fill: var(--accent); opacity: .85; margin-bottom: var(--s-5); }
+.quote--big blockquote { font-size: clamp(26px, 1.6vw + 18px, 40px); line-height: 1.3; max-width: 30ch; }
+.quote--big .person { margin-top: var(--s-6); }
+.person__name { display: block; font-weight: 500; }
+.person__role { display: block; color: var(--muted); }
+.stat-aside { display: flex; align-items: center; gap: var(--s-5); flex-wrap: wrap; }
+.stat-aside .t-stat { font-size: var(--t-h2); line-height: 1; }
+.stat-aside .stars { margin: 0; }
+.stars { display: flex; gap: 4px; margin: var(--s-3) 0 var(--s-2); }
+.stars svg { width: 18px; height: 18px; fill: var(--accent); }
+
+/* localização */
+.visit-text > * + * { margin-top: var(--s-5); }
+.visit-text > h2 + address { margin-top: var(--s-7); }
+.visit-text__addr { font: var(--display-weight) var(--t-h3)/1.3 var(--font-display); font-style: normal; letter-spacing: var(--display-tracking); }
+.visit-text__rows { list-style: none; padding: 0; border-top: 1px solid var(--line); }
+.visit-text__rows li { display: flex; justify-content: space-between; gap: var(--s-4); padding: var(--s-3) 0; border-bottom: 1px solid var(--line); }
+.visit-text__rows li span:first-child { color: var(--muted); }
+#localizacao .cx-map__ground { height: min(560px, calc(100svh - var(--nav) - var(--padt) - var(--padb) + 48px)); }
+@media (max-width: 1023px) {
+  #localizacao .span-6.start-7 { margin-top: var(--s-7); }
+  #localizacao .cx-map__ground { height: 420px; }
+}
+
+/* escala do mapa legível sobre as ruas */
+#localizacao .cx-map__scale { background: var(--bg); padding: 4px 8px; border-radius: 6px; color: var(--ink); }
+
+/* 320px: botão grande do fechamento cabe na tela */
+@media (max-width: 379px) { .closing__cta .btn--xl.btn--wide { padding-inline: var(--s-5); } }
+
+/* botão secundário do hero com contorno, para não sumir no fundo */
+.hero .btn--secondary { box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--ink) 40%, transparent); }
+
+/* nota no hero, abaixo dos botões */
+.hero .hero__text > .hero__rating { display: flex; align-items: center; gap: var(--s-2); margin-top: var(--s-4); color: var(--ink); font-weight: 500; font-size: var(--t-small); }
+.hero__rating svg { width: 16px; height: 16px; fill: var(--accent); flex: none; }
+
+/* foto da Raiane no hero: o card tem a proporção da foto (inteira, sem corte lateral) em todas as telas;
+   corta só a faixa escura de ~10px no pé do arquivo original */
+.hero--split .hero__media { --ly-pos: 50% 0%; --ly-pos-phone: 50% 0%; aspect-ratio: 1080 / 1430; }
+@media (min-width: 1024px) {
+  .hero--split .hero__media { width: auto; max-width: 100%; justify-self: end; }
+}
+/* 1024-1279: a foto estreita libera espaço; o texto ganha 6 colunas para "profundidade" não quebrar */
+@media (min-width: 1024px) and (max-width: 1279px) { .hero--split .hero__text { grid-column: 1 / span 6; } }
+/* tablet e celular: o hero cresce para a foto caber inteira embaixo do texto */
+@media (max-width: 1023px) {
+  .hero.hero--split { height: auto; min-height: 100vh; min-height: 100svh; }
+  .hero--split .hero__media { flex: none; height: auto; min-height: 0; width: 100%; }
+}
+@media (min-width: 640px) and (max-width: 1023px) { .hero--split .hero__media { width: min(100%, 560px); align-self: center; } }
+
+/* "Agenda aberta": uma linha abaixo dos botões, fora da foto */
+.hero .hero__text > .hero__agenda { display: flex; flex-wrap: wrap; align-items: center; gap: 6px var(--s-3); margin-top: var(--s-5); font-size: var(--t-small); color: var(--muted); }
+
+/* ================================================================
+   2026-11-10: abertura com a logo, cores por seção em degradê,
+   animações presas à rolagem, botões que crescem, botões de WhatsApp
+   ================================================================ */
+
+html, body { overflow-x: clip; }   /* o deslize lateral das animações não cria rolagem para o lado */
+html { scroll-behavior: auto; }   /* a rolagem suave dos links é feita em js/main.js (com easing próprio) */
+
+/* ---------- abertura: só a logo na tela; ao rolar, ela encolhe e vai para o menu ---------- */
+.intro, .intro-logo { display: none; }
+html.has-intro .intro { display: block; height: 100vh; height: 100svh; background: var(--c-hero); }
+html.has-intro .intro-logo {
+  display: block; position: fixed; left: 0; top: 0; z-index: 60; pointer-events: none;
+  width: min(80vw, 720px); height: auto; max-width: none; transform-origin: 0 0; will-change: transform;
+  /* posição inicial antes do JS: centralizada */
+  transform: translate(calc(50vw - 50%), calc(50svh - 50%));
+}
+html.has-intro.intro-done .intro-logo { visibility: hidden; }
+html.has-intro:not(.intro-done) .nav__logo--img img { opacity: 0; }
+/* menu e botão do WhatsApp aparecem enquanto a logo chega; pelo teclado, aparecem na hora */
+html.has-intro:not(.intro-ready) :is(.nav, .wa-float) { opacity: 0; }
+.wa-float:focus-visible { opacity: 1 !important; pointer-events: auto !important; }
+
+/* botão fixo de WhatsApp: pequeno, sempre no canto inferior direito, não some com a rolagem */
+.wa-float {
+  position: fixed; z-index: 55; right: max(16px, env(safe-area-inset-right)); bottom: max(16px, env(safe-area-inset-bottom));
+  width: 56px; height: 56px; display: grid; place-items: center; border-radius: 50%;
+  background: #fff; box-shadow: 0 4px 14px rgb(59 42 39 / .18);
+  transition: transform 280ms cubic-bezier(.23, 1, .32, 1), box-shadow 200ms ease;
+}
+.wa-float img { width: 40px; height: 40px; }
+@media (hover: hover) and (pointer: fine) { .wa-float:hover { transform: scale(1.05); box-shadow: 0 6px 18px rgb(59 42 39 / .24); } }
+.wa-float:active { transform: scale(1.08); transition-duration: 120ms; }
+@media (min-width: 1024px) { .wa-float { right: 24px; bottom: 24px; } }
+@media (prefers-reduced-motion: reduce) { .wa-float:is(:hover, :active) { transform: none; } }
+.nav:focus-within { opacity: 1 !important; pointer-events: auto !important; }
+
+/* ---------- cores por seção: clara → escura, cada uma termina na cor da próxima ---------- */
+:root {
+  --c-hero: #f9f3ef;   /* creme */
+  --c-abord: #f6ebe6;  /* rosé claro */
+  --c-sobre: #f2e2dc;  /* rosé */
+  --c-atend: #ecd8d3;  /* nude */
+  --c-dep: #e6cfd3;    /* malva suave */
+  --c-loc: #dcc0ca;    /* malva */
+  --c-close: #4a2338;  /* vinho escuro da logo */
+}
+.hero            { --sec: var(--c-hero);  --next: var(--c-abord); }
+#abordagem       { --sec: var(--c-abord); --next: var(--c-sobre); }
+#sobre           { --sec: var(--c-sobre); --next: var(--c-atend); }
+#atendimentos    { --sec: var(--c-atend); --next: var(--c-dep); }
+#depoimentos     { --sec: var(--c-dep);   --next: var(--c-loc); }
+#localizacao     { --sec: var(--c-loc);   --next: var(--c-loc); }   /* a passagem para o vinho fica no topo do contato */
+:is(.hero, #abordagem, #sobre, #atendimentos, #depoimentos, #localizacao) {
+  --bg: var(--sec); --surface: color-mix(in oklab, var(--sec) 45%, #fff); --card: var(--surface);
+  background: linear-gradient(to bottom, var(--sec) 0%, var(--sec) 60%, var(--next) 100%);
+}
+/* nos tons mais escuros o cinza dos textos escurece junto, para manter o contraste */
+:is(#sobre, #atendimentos, #depoimentos, #localizacao) { --muted: #634c48; }
+
+/* contato + rodapé no vinho da logo, com texto creme; começa com a passagem do malva */
+footer.closing {
+  --bg: var(--c-close); --surface: #5a2f46; --card: #5a2f46; --ink: #f9f3ef; --muted: #dcc6cf;
+  --accent: #f3cfe0; --accent-ink: var(--c-close); --action: #f9f3ef; --action-ink: var(--c-close);
+  --line: color-mix(in oklab, #f9f3ef 16%, transparent); --line-strong: color-mix(in oklab, #f9f3ef 30%, transparent);
+  color: var(--ink);
+  background: linear-gradient(to bottom, var(--c-loc) 0, var(--c-close) calc(var(--padt) * .85), var(--c-close) 100%);
+}
+footer.closing a:not(.btn):hover { color: #f3cfe0; }
+
+/* seções crescem com o conteúdo (os botões novos não podem cair em cima da próxima) */
+main > section:not(.hero), footer.closing { height: auto; min-height: 100vh; min-height: 100svh; }
+
+/* ---------- botões de WhatsApp em cada seção ---------- */
+.cta-row { display: flex; margin-top: var(--s-7); }
+.about > .cta-row { margin-top: var(--s-6); }
+.cta-row--wide { display: block; }
+.visit-text__actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s-4) var(--s-6); }
+@media (max-width: 639px) {
+  .cta-row .btn, .visit-text__actions .btn { width: 100%; }
+}
+
+/* ---------- painel do "Sobre mim" (até chegar a foto do consultório) ---------- */
+.about-panel {
+  display: grid; place-items: center; align-content: center; gap: var(--s-7); padding: var(--s-7);
+  background: color-mix(in oklab, var(--c-sobre) 35%, #fff);
+}
+.about-panel__mark { width: min(44%, 230px); height: auto; }
+.about-panel__facts { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: var(--s-2) var(--s-3); }
+.about-panel__facts li {
+  padding: 8px 16px; border-radius: 999px; font-size: var(--t-small); color: var(--ink);
+  border: 1px solid color-mix(in oklab, var(--accent) 35%, transparent); background: color-mix(in oklab, #fff 50%, transparent);
+}
+
+/* ---------- ilustrações em traço dos cards de atendimento ---------- */
+.tile__media--ill { display: grid; place-items: center; background: color-mix(in oklab, var(--c-atend) 30%, #fff); }
+.ill { width: 80%; height: auto; overflow: visible; fill: none; stroke: var(--accent); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.ill path { stroke-dasharray: 1 1; stroke-dashoffset: calc(1 - var(--draw, 1)); }
+
+/* ---------- botões: crescem ao passar o mouse e dão um pulo ao clicar ---------- */
+html:not([data-motion="off"]) .btn {
+  transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease, box-shadow 200ms ease,
+              transform 280ms cubic-bezier(.23, 1, .32, 1);
+}
+@media (hover: hover) and (pointer: fine) {
+  html:not([data-motion="off"]) .btn:hover { transform: scale(1.05); }
+  html:not([data-motion="off"]) .btn:active { transform: scale(1.08); transition-duration: 200ms, 200ms, 200ms, 200ms, 120ms; }
+}
+html:not([data-motion="off"]) .btn:active { transform: scale(1.08); transition-duration: 200ms, 200ms, 200ms, 200ms, 120ms; }
+
+/* ---------- reduzir movimento: nada se mexe, tudo visível, logo já no menu ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .intro, .intro-logo { display: none !important; }
+  html:not([data-motion="off"]) .btn:is(:hover, :active) { transform: none; }
+  .ill path { stroke-dashoffset: 0; }
+}
+/* tablet e celular: o painel cresce com o conteúdo (o 4:3 cortava o símbolo e o selo do CRP) */
+@media (max-width: 1023px) { .frame-slot.about-panel { aspect-ratio: auto; height: auto; min-height: 340px; padding-block: var(--s-8); } }
+@media (max-width: 639px) { .about-panel__facts li { font-size: 14px; padding: 6px 12px; } }
+@media (max-width: 639px) { .frame-slot.about-panel { padding-inline: var(--s-4); } .about-panel__facts li { white-space: nowrap; } }
+/* celular: o botão fixo do WhatsApp substitui o "Agendar consulta" da barra do menu (continua no menu aberto) */
+@media (max-width: 639px) { .nav:not(.is-open) .nav__actions { display: none; } .nav:not(.is-open) .nav__bar > .nav__actions + .nav__toggle { margin-left: auto; } }
